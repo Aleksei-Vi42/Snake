@@ -5,7 +5,7 @@
      <title>Змейка</title>
  </head>
  <body>
- 	<canvas id="canvas" width="500" height="500"></canvas>
+ 	<canvas id="canvas" width="300" height="300"></canvas>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
     //настройка холста
@@ -31,7 +31,8 @@
       ctx.fillRect(width - blockSize, 0, blockSize, height)
     }
 
-    
+  
+
     //функция для отрисовки счета в верхнеем левом углу 
     const drawScore = () => {
     ctx.font = '18px Courier'
@@ -155,12 +156,13 @@
      this.segments.unshift(newHead)
      if (newHead.equal(apple.position)) {
       score++
-      animationTime -= 10
+      animationTime -= 1
       apple.move()
      } else {
       this.segments.pop()
      }
    }
+  
     //функция для недопустимости создания яблока в теле змейки
     const checkApple = () => {
         for (let i = 0; i < snake.segments.length; i++)
@@ -175,13 +177,14 @@
       const rightCollision = (head.col === widthInBlocks - 1)
       const bottomCollision = (head.row === heightInBlocks - 1)
       const wallCollision = leftCollision || topCollision || rightCollision || bottomCollision
-      const selfCollision = false
+      const selfCollision = false     
+      const beeCollision = false
       for (var i = 0; i < this.segments.length; i++) {
         if (head.equal(this.segments[i])) {
           selfCollision = true
         }
       }
-      return wallCollision || selfCollision
+      return wallCollision || selfCollision 
     }
 
      //setDirection -  допустимые напрваления
@@ -197,11 +200,11 @@
       }
       this.nextDirection = newDirection
      }
-  
+
       const snake = new Snake()
       const apple = new Apple()
       //запуск функции анимации через setTimeout
-     let animationTime = 300
+     let animationTime = 200
      let playGame = 0
      const gameLoop = function() {
       ctx.clearRect(0, 0, width, height)

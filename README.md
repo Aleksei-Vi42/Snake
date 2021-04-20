@@ -1,3 +1,3 @@
-# Snake-and-bees
-game snake and bees
+# Snake
+game just snake
 
